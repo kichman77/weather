@@ -1,9 +1,6 @@
 import axios from "axios";
-console.dir(axios);
-
-let weatherWrapper = document.querySelector(".weather");
-
-const input = document.querySelector(".search-bar");
+import refs from './refs.js'
+const {weatherWrapper, input} = refs
 console.log(input);
 
 input.addEventListener("change", (e) => {
@@ -20,6 +17,9 @@ input.addEventListener("change", (e) => {
 function getWeather(city) {
   const key = "0a61bb2f5eb2f37828fb583ecf641a01";
   const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`;
+
+  input.value = "";
+  weatherWrapper.innerHTML = "";
 
   return axios
     .get(url)
@@ -46,15 +46,8 @@ function getWeather(city) {
       console.log(weatherWrapper);
       return weatherWrapper;
     });
+
 }
 
-//   <div class="weather loading">
-//   <h2 class="city">Weather in Your City</h2>
-//   <h1 class="temp">--°C</h1>
-//   <div class="flex">
-//     <img src="https://openweathermap.org/img/wn/04n.png" alt="" class="icon" />
-//     <div class="description">Cloudy</div>
-//   </div>
-//   <div class="humidity">Humidity: --%</div>
-//   <div class="wind">Wind speed: -- km/h</div>
-// </div>
+
+
